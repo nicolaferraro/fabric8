@@ -162,7 +162,7 @@
         <spring.version>4.3.9.RELEASE</spring.version>
         <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
         <spring-cloud-kubernetes.version>0.1.5</spring-cloud-kubernetes.version>
-        <sundrio.plugin.version>0.3.10</sundrio.plugin.version>
+        <sundrio.plugin.version>0.7.6</sundrio.plugin.version>
         <validation-api.version>1.1.0.Final</validation-api.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <commons-codec.version>1.11</commons-codec.version>
@@ -232,6 +232,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
@@ -1505,6 +1517,8 @@
                                   <include>org.apache.cxf:cxf-spring-boot-starter-jaxws</include>
                                   <include>org.apache.cxf:cxf-rt-rs-service-description-swagger</include>
                                   <include>io.swagger:*</include>
+
+                                  <include>org.springframework.boot:spring-boot-starter-web</include>
                               </includes>
                               <excludes>
                                   <exclude>javax.servlet:javax.servlet-api</exclude>
@@ -1522,6 +1536,8 @@
                                       </includes>
                                       <excludes>
                                           <exclude>org.assertj*:*</exclude>
+
+                                          <exclude>org.springframework.boot:spring-boot-starter-web</exclude>
                                       </excludes>
                                   </dependencyManagement>
                               </import>
